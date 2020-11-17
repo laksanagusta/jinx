@@ -57,7 +57,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: 'thisisjinxsecretpasswordprivate',
-  baseURL: 'https://admin-jinx.herokuapp.com',
+  baseURL: 'https://jinx-server.herokuapp.com',
   clientID: 'RjydrsQmgj2NsUcge8FLKYM6ElU1EQxa',
   issuerBaseURL: 'https://dev-kpqfxalf.us.auth0.com'
 };
