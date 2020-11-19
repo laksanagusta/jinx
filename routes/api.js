@@ -4,5 +4,6 @@ const apiController = require('../controllers/api/apiController');
 
 // router.post('/signin', adminController.signIn);
 router.get('/getHomePageData', apiController.getHomePageData);
+router.post('/addMember', apiController.addMember);
 
 module.exports = router;

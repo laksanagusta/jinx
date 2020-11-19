@@ -4,8 +4,61 @@ const Category = require('../../models/Category');
 const Bank = require('../../models/Bank');
 const Booking = require('../../models/Booking');
 const Member = require('../../models/Member');
+const User = require('../../models/User');
 
 module.exports = {
+  login: async (req, res) => {
+    const {email} = req.body;
+    const isLogin = false;
+    try {
+      if(req.session.member.id == undefined || req.session.member.id == null )
+      {
+        const user = await User.findOne({email:email})
+        if(user.length > 0){
+          islogin = true;
+          req.session.member= {
+              id:user.id,
+              name:user.name,
+              user:user.email
+          }
+        }
+      }
+      else{
+        
+      }
+
+      res.status(200).json({
+        user, 
+        islogin
+      })
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  },
+
+  addMember: async (req, res) => {
+    const {
+      fullName,
+      email,
+      city,
+      phoneNumber,
+    } = req.body;
+    try {
+      const member = await Member.create({
+        fullName,
+        city,
+        email,
+        phoneNumber
+      }); 
+      res.status(200).json({
+        message:"Success add member"
+      })
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  },
+
   getHomePageData: async (req, res) => {
     try {
       const allProduct = await Product.find()
@@ -29,7 +82,7 @@ module.exports = {
     //     })
 
       res.status(200).json({
-        allProduct,
+        allProduct, 
       })
     } catch (error) {
       console.log(error);
