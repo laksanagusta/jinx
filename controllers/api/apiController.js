@@ -59,7 +59,25 @@ module.exports = {
     }
   },
 
-  getHomePageData: async (req, res) => {
+  loginMember: async (req, res) => {
+    const {
+      email
+    } = req.body;
+    try {
+      const member = await Member.findOne({email:email})
+      if(member){
+        res.status(200).json({
+          member
+        })
+      }else{
+        res.status(500).json({ message: "User not found" });
+      }
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  },
+
+  getProducts: async (req, res) => {
     try {
       const allProduct = await Product.find()
         .select('_id title brand price imageId')
