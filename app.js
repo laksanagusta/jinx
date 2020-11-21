@@ -61,16 +61,16 @@ app.use(cors());
 // })
 
 //authentication
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: 'thisisjinxsecretpasswordprivate',
-  baseURL: 'https://jinx-server.herokuapp.com',
-  clientID: 'RjydrsQmgj2NsUcge8FLKYM6ElU1EQxa',
-  issuerBaseURL: 'https://dev-kpqfxalf.us.auth0.com'
-};
+// const config = {
+//   authRequired: false,
+//   auth0Logout: true,
+//   secret: 'thisisjinxsecretpasswordprivate',
+//   baseURL: 'https://jinx-server.herokuapp.com',
+//   clientID: 'RjydrsQmgj2NsUcge8FLKYM6ElU1EQxa',
+//   issuerBaseURL: 'https://dev-kpqfxalf.us.auth0.com'
+// };
 
-app.use(auth(config));
+// app.use(auth(config));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
