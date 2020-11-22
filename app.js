@@ -19,7 +19,7 @@ const methodOverride = require('method-override');
 const flash = require('connect-flash');
 
 //authentication
-const { auth, requiresAuth  } = require('express-openid-connect');
+// const { auth, requiresAuth  } = require('express-openid-connect');
 
 //import mongoose
 const mongoose = require('mongoose');
@@ -44,33 +44,13 @@ const featureRouter = require('./routes/feature');
 const apiRouter = require('./routes/api');
 
 // adding Helmet to enhance your API's security
-app.use(helmet());
+// app.use(helmet());
 
 // using bodyParser to parse JSON bodies into JS objects
 app.use(bodyParser.json());
 
 // enabling CORS for all requests
 app.use(cors());
-
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers", 
-//     "Origin, X-Requested-With, Content-Type" 
-//   )
-// })
-
-//authentication
-// const config = {
-//   authRequired: false,
-//   auth0Logout: true,
-//   secret: 'thisisjinxsecretpasswordprivate',
-//   baseURL: 'https://jinx-server.herokuapp.com',
-//   clientID: 'RjydrsQmgj2NsUcge8FLKYM6ElU1EQxa',
-//   issuerBaseURL: 'https://dev-kpqfxalf.us.auth0.com'
-// };
-
-// app.use(auth(config));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -91,33 +71,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //use sb-admin
 app.use('/sb-admin-2', express.static(path.join(__dirname, 'node_modules/startbootstrap-sb-admin-2')));
-
-
-//jwt implementation
-
-// var jwtCheck = jwt({
-//   secret: jwks.expressJwtSecret({
-//     cache: true,
-//     rateLimit: true,
-//     jwksRequestsPerMinute: 5,
-//     jwksUri: 'https://dev-kpqfxalf.us.auth0.com/.well-known/jwks.json'
-//   }),
-//   audience: 'https://user-api',
-//   issuer: 'https://dev-kpqfxalf.us.auth0.com/',
-//   algorithms: ['RS256']
-// });
-
-// // app.use(jwtCheck);
-
-// const accessTokenSecret = 'jinxaccesstokensecret';
-// const accessToken = jwt.sign({ username: req.oidc.user.nickname,  role: 'user' }, accessTokenSecret);
-// res.json({
-//     accessToken
-// });
-// console.log(JSON.stringify(accessToken));
-
-// app.use(requiresAuth());
-
 
 
 app.use('/', indexRouter);
